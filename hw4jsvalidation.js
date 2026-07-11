@@ -457,7 +457,7 @@ function returningpatient() {
     }
 }
 
-function newpatient() {
+function resetpatient() {
     document.cookie = "fname=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     document.getElementById("med_form").reset();
     document.getElementById("welcome").innerHTML ="Welcome, New Patient!";
