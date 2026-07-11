@@ -402,7 +402,7 @@ function review_form(){
 }
 
 async function showstates() {
-    try { const res = await fetch("states.json");
+    try { const res = await fetch("stateshw4.json");
         if (!res.ok) {
           throw new Error("Network Failed");
         } const names = await res.json();
