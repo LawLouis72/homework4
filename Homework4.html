@@ -1,0 +1,189 @@
+    <!doctype html>
+<!-- 
+Program name: patient-form.html
+Author: Isaiah Louis
+Date created: 7/11/2026
+Date last edited: 7/11/2026
+Version: 4.0
+Description: A document to take new patient information
+-->
+<html>
+    <head>
+        <title>Medical Form</title>
+        <link rel="stylesheet" href="./homework4CSS.css">
+        <meta charset="UTF-8">
+        <script src="hw4jsvalidation.js"></script>
+    </head>
+    <body>
+    <form action="./thankyouhw4.html" name="med_form">
+        <header>
+            <table id="heading">
+                <tr>
+                    <td> <img src="../Medical_Image.jpeg" alt="Medical Image" style="width:200px;height:200px"> 
+                    <td> <h1 class="h1">Cougar Medical Facility</h1>
+                    <h3 class ="h3">Patient Registration Form</h3>
+                    <p id="date"></p>
+                    <script>
+                        const d = new Date();
+                        document.getElementById("date").innerHTML = d;
+                    </script>
+                    <td><iframe src="iframehw4.html" width="550" height="120"></iframe></td>
+                </tr>
+            </table>
+        </header>
+        <div class="center">
+            <h4 class="h4">PATIENT INFORMATION</h4>
+            <p id="welcome"></p>
+        <br>
+            <button type="button" id= "newpatient" onclick="newpatient()">New Patient</button>
+        <br>
+        <br>
+        <table>
+            <tr>
+                <label class="labels" for="fname">First Name:</label>
+                <input maxlength="30" type="text" onblur="cookiename()" id="fname" name="fname" required title="Letters only" pattern="[A-Za-z]{1,30}" placeholder="John" oninput="focusfname()">
+                <span id="errorfname"> </span>
+                <label class="labels" for="mi">Middle Initial:</label>
+                <input maxlength="1" type="text" id="mi" name="mi" title= "Letter only" pattern="[A-Za-z]{0,1}" placeholder="I" oninput="focusmi()">
+                <span id="errormi"></span>
+                <label class="labels" for="lname">Last Name:</label>
+                <input maxlength="30" type="text" id="lname" name="lname" required title="Letters only" pattern="[A-Za-z]{1,30}" placeholder="Doe" oninput="focuslname()">
+                <span id="errorlname"></span>
+            </tr>
+        </table>
+        <table >
+            <tr>
+                <td><label class="labels" for="birthday">Birthday:</label></td> 
+                <td><input type="date" id="birthday" name="birthday" required min="1900-01-01" max="2026-08-01" title="Enter a valid birthday between 1900 July 1st and 2026 July 1st" oninput="focusbirthday()"></td> 
+                <td><span id="errorbirthday"></span></td>
+                <td><label class="labels" for="ssn">SSN:</label></td> 
+                <td><input minlength="9" maxlength="11" type="password" id="ssn" name="ssn" required title="Format: 000-00-0000 or 000000000" pattern="[0-9]{3}-[0-9]{2}-[0-9]{4}|[0-9]{9}" oninput="focusssn()"></td>
+               <td><span id ="errorssn"> </span></td>
+               
+        </table>
+        <table>
+                <td><p class="p2">Gender:</p>
+                <td><input type="radio" id="Male" name="preferred_sex" value="Male"></td> 
+                <td><label class="labels" for="Male">Male</label></td> 
+                <td><input type="radio" id="Female" name="preferred_sex" value="Female"></td> 
+                <td><label class="labels" for="Female">Female</label></td> 
+                <td><input type="radio" id="Other" name="preferred_sex" value="Other"></td> 
+                <td><label class="labels" for="Other">Other</label></td> 
+                <td><input type="radio" id="Rather_not_say" name="preferred_sex" value="Rather_not_say"></td> 
+                <td><label class="labels" for="Rather_not_say">Rather Not Say</label></td> 
+            </tr>
+        </table>
+        <table> 
+            <tr>
+                <label class="labels" for="Address_One">Address One:</label>
+                <input maxlength="30" type="text" id="Address_One" name="Address_One" required pattern="[A-Za-z0-9\s.#'-]{1,30}" placeholder="1234 Apple St" title= "Enter a valid address" oninput="focusaddressone()">
+                <span id ="erroraddressone"></span>
+            <br>
+            <br>
+                <label class="labels" for="Address_Two">Address Two:</label>
+                <input maxlength="30" type="text" id="Address_Two" name="Address_Two" placeholder="5678 Pumpkin Rd" pattern="[A-Za-z0-9\s.#'-]{1,30}" title= "Enter a valid address" oninput = "focusaddresstwo()">
+                <span id ="erroraddresstwo"></span>
+            <br>
+            </tr>
+        </table>
+        <table>
+               <td><label class ="labels" for="State">State:</label>
+               <td> <select name="State" id="State" required title="Pick your state" onchange="focusstate()">
+                    <option value="Default">--Default--</option>
+                </select>
+                <span id="errorstate"></span>
+                <td><label class="labels" for="city">City:</label></td> 
+                <td><input type="text" id="city" name="city" required placeholder="Houston" pattern="[A-Za-z\s.#'-]{1,30}" title="Enter a valid city" oninput="focuscity()"></td> 
+                <td><span id="errorcity"></span>
+                <td><label class="labels" for="ZipCode">Zipcode:</label></td> 
+                <td><input minlength="5" maxlength="10" type="text" id="Zipcode" name="ZipCode" required pattern="[0-9]{5,10}" title="Numbers only 5 to 10 characters" placeholder="77024" oninput="focuszipcode()"></td> 
+                <td><span id ="errorzipcode"></span></td>
+            </tr>     
+        </table>   
+        <table>
+                <td><label class="labels" for="email">Email:</label></td> 
+                <td><input type="email" id="email" name="email" required pattern="[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}" title= "Format is Johndoe5@gmail.com" placeholder="Johndoe@gmail.com" oninput="focusemail()"></td>
+                <td><span id ="erroremail"></span>
+                 <td><label class="labels" for="phone">Phone Number:</label></td> 
+                <td><input type="tel" id="phone" name="phone" title="Format: 000-000-0000 or 0000000000" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{10}" placeholder="713-111-1111" oninput ="focusphone()"></td>
+                <td><span id ="errorphone"></span></td>
+        </table>
+        <table> 
+            <tr>
+                <label class="labels" for="user">UsernameID:</label></td>
+                <input maxlength="20" type="text" id="userID" name="user" required pattern="[A-Za-z0-9]{1,20}" title="1-20 letters and numbers only" placeholder="JohnD24" oninput="focususerid()">
+                <span id= "erroruserid"></span>
+            <br>
+            <br>
+                <label class="labels" for="password">Password:</label>
+                <input type="password" id="password" name="password" required pattern="[A-Za-z0-9!@#?._%+\-]{8,20}" title= "Letters,numbers,speical charactes are allowed, and must be at least 8 characters" oninput="focuspassword()">
+                <span id ="errorpassword"></span>
+            <br>
+            <br>
+                <label class="labels" for="repassword">Re-enter Password:</label>
+                <input type="password" id="repassword" name="repassword" required  pattern="[A-Za-z0-9!@#?._%+\-]{8,20}" title= "Letters,numbers,speical charactes are allowed, and must be at least 8 characters" oninput="focusrepassword()">
+                <span id ="errorrepassword"></span>
+        </table>
+         
+        <p class="p1"><b>Please Select the following that apply.</b><p>
+        <table>
+            <tr>         
+                <label class="labels" for="history_of_smoking">History of Smoking:</label>
+                <input type="checkbox" id="history_of_smoking" name="history_of" class="history_of">
+            <br>
+                <label class="labels" for="history_of_drinking">History of Drinking:</label>
+                <input type="checkbox" id="history_of_drinking" name="history_of" class="history_of">
+            <br>
+                <label class="labels" for="history_of_allergies">History of Allergies:</label>
+                <input type="checkbox" id="history_of_allergies" name="history_of" class="history_of">
+            <br>
+                <label class="labels" for="history_of_drugs">History of Drugs:</label>
+                <input type="checkbox" id="history_of_drugs" name="history_of" class="history_of">
+            <br>
+                <label class="labels" for="history_of_medication">History of Medication:</label>
+                <input type="checkbox" id="history_of_medication" name="history_of" class="history_of">
+            </tr>
+        </table>
+            <p class="p1"><b>How often do you experience suicidal thoughts? (0 = never or almost never, 10 = very often)</b></p>
+          <table>
+                <tr>
+                    <label class="labels" for="slider">Suicidal thoughts frequency:</label>
+                    <input type="range" id="slider" name="" min="0" max="10" oninput="slidernumber(this.value)">
+                    <td><span id="sliderrange"></span></td>
+                    <tr>
+                   <td> <p class="sp1" id="slider_padone"> 0 </p></td>
+                   <td> <p class="sp1" id="slider_padone"> 5 </p></td>                  
+                   <td> <p class="sp2" id="slider_padone"> 10 </p></td>
+                   
+        </table>
+        <table>
+                <h4 class="h4">For any of the selected options please explain the history and any concerns for your appointment.</h4>
+                <textarea id="patient_thoughts" name="patient_thoughts" rows="3" cols="50"></textarea>
+                <td><input type="submit" value="submit">
+                <td><button type ="button" id ="review" onclick= "review_form()">Review</button>
+                <td><input type="reset">
+          
+        </table>
+        <div id="validate">
+                <p id="show_validate"></p>
+        </div>
+    </form>
+    </div>
+        <footer>
+            <div>
+               <table>
+                    <tr>
+                        <td><img src="../Medical_Image.jpeg" alt="Medical Image" style="width:50px;height:50px"></td> 
+                        <td><h6 class="h6">Cougar Medical, </h6></td>      
+                        <td><h6 class="h6" >4800 Calhoun Rd Houston, TX 77004, </h6></td>
+                        <td><a href="./footercontacthw4.html"><b>CONTACT US!</b></a></td>
+                    </tr>
+                </table>
+            </div> 
+
+            <div>
+
+            </div>
+        </footer>
+    </body>
+</html>
